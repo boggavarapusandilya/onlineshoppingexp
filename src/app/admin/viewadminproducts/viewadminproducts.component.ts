@@ -10,20 +10,18 @@ import { AdminserviceService } from 'src/app/adminservice.service';
 export class ViewadminproductsComponent implements OnInit {
   lengthofarray : any;
   listObj:any;
+  spinning:any=0;
   constructor( private as:AdminserviceService,private router:Router) { }
 
   ngOnInit(): void {
     this.listObj=this.as.getlist().subscribe(
       res=>{ 
-        if(res["message"]=="success"){
-          this.listObj=res.list;
+        if(res.message){
+          this.listObj=res.message;
           console.log(this.listObj);
           this.lengthofarray=this.listObj.length;
+          this.spinning=1;
           }
-        else{
-          console.log(res["message"])
-         
-        }
       }, 
       err=>{ 
         console.log("Something went wrong") 
@@ -37,7 +35,7 @@ export class ViewadminproductsComponent implements OnInit {
 
     this.as.deleteProduct(obj).subscribe(
       res=>{
-        if(res["message"]){
+        if(res.message){
           console.log("Product removed successfully");
           window.location.reload();
         
@@ -49,9 +47,6 @@ export class ViewadminproductsComponent implements OnInit {
       }
     )
 
-  }
-  addnewproduct(){
-    this.router.navigateByUrl("/admindashboard")
   }
   edit(one:any){
     console.log(one);

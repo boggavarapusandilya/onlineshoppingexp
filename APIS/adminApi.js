@@ -48,6 +48,9 @@ adminApiObj.get("/oneproduct/:pCategory",errorHandler(async(req,res,next)=>{
     res.send({message:products})
 }))
 
+
+//adding products to database
+
 adminApiObj.post("/productdetails",upload.single('photo'),errorHandler(async (req,res,next)=>{
     console.log("url is ",req.file.path);
     //get product collectionobject
@@ -62,15 +65,10 @@ let success=await adminProductCollectionObj.insertOne(proObj)
 
     
 }))
-adminApiObj.get("/getlist",errorHandler(async (req,res,next)=>{
-    let adminProductCollectionObj = req.app.get("adminProductCollectionObj") 
-  
-    let proObj=await adminProductCollectionObj.find().toArray();
-    console.log("list is",proObj);
 
-    res.send({message:"success",list:proObj})
-    
-    }))
+
+
+//delete all products
 adminApiObj.post("/delete",errorHandler(async(req,res,next)=>{
     
         let adminProductCollectionObj = req.app.get("adminProductCollectionObj");
@@ -86,8 +84,8 @@ adminApiObj.post("/delete",errorHandler(async(req,res,next)=>{
         }
     
     }))
-    adminApiObj.get("/getproductdata/:pname",errorHandler(async (req,res,next)=>{
-        console.log("haii");
+// get product data for editing 
+adminApiObj.get("/getproductdata/:pname",errorHandler(async (req,res,next)=>{
         let adminProductCollectionObj = req.app.get("adminProductCollectionObj") ;
         let proObj=await adminProductCollectionObj.findOne({pname:req.params.pname});
         console.log(proObj);
@@ -99,7 +97,7 @@ adminApiObj.post("/delete",errorHandler(async(req,res,next)=>{
         }
         
         }))
-      
+// updating the product details
 adminApiObj.put("/updateproduct",errorHandler(async(req,res,next)=>{
             //console.log(req.body)
             let Allproducts=req.app.get("adminProductCollectionObj")

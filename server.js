@@ -52,5 +52,5 @@ app.use((err,req,res,next)=>{
 })
 
 //assign port number
-const port=4000;
+const port=process.env.portno
 app.listen(port,()=>console.log(`Web server is on ${port}`))

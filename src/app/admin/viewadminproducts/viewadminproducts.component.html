@@ -1,4 +1,17 @@
 <div class="container-fluid ">
+    <div class="border d-flex align-items-center justify-content-center" id="spin" *ngIf="spinning==0" style="height: 550px;">
+        
+      
+        <div class="spinner-border text-danger" role="status" >
+            
+          <span class="visually-hidden">Loading...</span>
+         
+        </div>
+        <div><h2>  Loading.... please wait</h2></div>
+      </div>
+
+
+      <div *ngIf="spinning==1">
   
     
     <h3 style="text-align: center;">Total no.of products : {{lengthofarray}}</h3>
@@ -7,7 +20,7 @@
             
             <div class="card" style="height: 320px;" (click)="edit(one)">
                 <div class="card-body" >
-                    <img src="{{one.ImgLink}}" alt="" height="150px" width="50%" class="d-block mx-auto">
+                    <img src="{{one.ImgLink}}" alt="" height="150px" width="50%" class="d-block  mx-auto">
                     <h5 style="color: blue;">{{one.pname}}</h5>
                     <ul style="list-style-type:none; text-align: right; font-size: 1.3rem;">
             
@@ -33,4 +46,5 @@
     </div>
 </div>
 <button class="btn btn-primary" id="buttonfix" (click)="reloadPage()">Back to top</button>
+</div>
 </div>

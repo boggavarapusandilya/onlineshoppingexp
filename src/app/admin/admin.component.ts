@@ -64,9 +64,7 @@ onSubmit(){
     }
   )
 }
-viewproducts(){
-  this.router.navigateByUrl("/admindashboard/viewadminproducts");
-}
+
 getcontrol(){
   return this.registerForm.controls;
 }

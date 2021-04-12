@@ -14,7 +14,7 @@ export class AdminserviceService {
     return this.hc.post("/admin/productdetails",proObj);
   }
   getlist():Observable<any>{
-    return this.hc.get("/admin/getlist")
+    return this.hc.get("/admin/allproducts")
   }
   deleteProduct(obj:any):Observable<any>{
     console.log("products is",obj);
